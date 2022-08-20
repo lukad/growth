@@ -1,0 +1,30 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://Assets/Meshes/ground_grass.glb" type="PackedScene" id=1]
+[ext_resource path="res://Assets/Textures/texture_08.png" type="Texture" id=2]
+
+[sub_resource type="SpatialMaterial" id=1]
+albedo_texture = ExtResource( 2 )
+uv1_triplanar = true
+uv2_triplanar = true
+
+[sub_resource type="ArrayMesh" id=2]
+resource_name = "ground_grass_Mesh ground_grass"
+lightmap_size_hint = Vector2( 22, 22 )
+surfaces/0 = {
+"aabb": AABB( -0.5, 0, -0.5, 1.00001, 1e-05, 1.00001 ),
+"array_data": PoolByteArray( 0, 0, 0, 63, 0, 0, 0, 0, 0, 0, 0, 63, 0, 127, 127, 64, 235, 76, 43, 77, 209, 59, 209, 59, 0, 0, 0, 191, 0, 0, 0, 0, 0, 0, 0, 63, 0, 127, 127, 64, 235, 204, 43, 77, 209, 37, 209, 59, 0, 0, 0, 191, 0, 0, 0, 0, 0, 0, 0, 191, 0, 127, 127, 64, 235, 204, 171, 204, 209, 37, 209, 37, 0, 0, 0, 63, 0, 0, 0, 0, 0, 0, 0, 191, 0, 127, 127, 64, 235, 76, 171, 204, 209, 59, 209, 37 ),
+"array_index_data": PoolByteArray( 0, 0, 1, 0, 2, 0, 2, 0, 3, 0, 0, 0 ),
+"blend_shape_data": [  ],
+"format": 2194743,
+"index_count": 6,
+"material": SubResource( 1 ),
+"primitive": 4,
+"skeleton_aabb": [  ],
+"vertex_count": 4
+}
+
+[node name="Meshes" type="Spatial"]
+
+[node name="ground_grass" parent="." instance=ExtResource( 1 )]
+mesh = SubResource( 2 )

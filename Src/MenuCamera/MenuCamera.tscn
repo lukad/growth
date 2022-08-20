@@ -1,0 +1,32 @@
+[gd_scene load_steps=5 format=2]
+
+[sub_resource type="Gradient" id=284]
+offsets = PoolRealArray( 0, 0.139423, 0.798077, 1 )
+colors = PoolColorArray( 0, 0, 0, 1, 0.1169, 0.1148, 0.14, 1, 0.8, 0.7496, 0.632, 1, 1, 1, 1, 1 )
+
+[sub_resource type="GradientTexture" id=285]
+gradient = SubResource( 284 )
+
+[sub_resource type="ProceduralSky" id=1]
+
+[sub_resource type="Environment" id=2]
+background_mode = 2
+background_sky = SubResource( 1 )
+background_sky_orientation = Basis( 0.819152, 0, 0.573577, 0, 1, 0, -0.573577, 0, 0.819152 )
+dof_blur_far_enabled = true
+dof_blur_near_enabled = true
+glow_enabled = true
+glow_intensity = 1.1
+glow_strength = 1.2
+glow_hdr_threshold = 0.75
+adjustment_enabled = true
+adjustment_saturation = 0.29
+adjustment_color_correction = SubResource( 285 )
+
+[node name="MenuCamera" type="Position3D"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1.36337, 2.833, -1.33667 )
+
+[node name="Camera" type="Camera" parent="."]
+transform = Transform( 0.573576, 0.241287, -0.78281, 0, 0.955634, 0.294557, 0.819152, -0.168951, 0.548129, -4.35637, 0, 2.33267 )
+environment = SubResource( 2 )
+fov = 65.0

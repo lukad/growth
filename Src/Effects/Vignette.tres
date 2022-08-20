@@ -1,0 +1,24 @@
+[gd_resource type="Shader" format=2]
+
+[resource]
+code = "shader_type canvas_item;
+
+uniform float light : hint_range(0, 1);
+uniform float extend : hint_range(0, 1);
+
+void fragment() {
+	vec2 uv = UV;
+	vec3 chroma;
+
+	// cache screen
+	vec3 color = textureLod(SCREEN_TEXTURE, SCREEN_UV, 0.0).rgb;
+    
+	// generate gradient from center to the corners
+	uv *=  1.0 - uv.yx;
+	float vig = uv.x * uv.y * 15.;
+	vig = pow(vig, extend);
+	vig = 1.0 - vig;
+
+	// mix chroma with vignette (darker version of chroma image)
+	COLOR.rgb = mix(color, color * vec3(light), vig);
+}"

@@ -1,0 +1,81 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://Src/Player/Player.gd" type="Script" id=1]
+[ext_resource path="res://Src/Blaster/Blaster.tscn" type="PackedScene" id=2]
+
+[sub_resource type="CapsuleShape" id=320]
+radius = 0.07
+height = 0.1
+
+[sub_resource type="Animation" id=322]
+resource_name = "HeadBob"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/path = NodePath("..:translation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.3 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector3( 0, 0.19, 0 ), Vector3( 0, 0.175, 0 ), Vector3( 0, 0.175, 0 ) ]
+}
+
+[sub_resource type="Animation" id=323]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:translation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector3( 0, 0, 0 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("..:translation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector3( 0, 0.175, 0 ) ]
+}
+
+[sub_resource type="CapsuleMesh" id=321]
+radius = 0.07
+mid_height = 0.1
+
+[node name="Player" type="KinematicBody"]
+script = ExtResource( 1 )
+
+[node name="CollisionShape" type="CollisionShape" parent="."]
+transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0.125, 0 )
+shape = SubResource( 320 )
+
+[node name="Head" type="Spatial" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.175, 0 )
+
+[node name="Camera" type="Camera" parent="Head"]
+current = true
+near = 0.01
+
+[node name="Blaster" parent="Head/Camera" instance=ExtResource( 2 )]
+transform = Transform( -0.2, 0, -3.01992e-08, 0, 0.2, 0, 3.01992e-08, 0, -0.2, 0.034, -0.044, -0.103 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Head"]
+root_node = NodePath("../Camera")
+anims/HeadBob = SubResource( 322 )
+anims/RESET = SubResource( 323 )
+
+[node name="MeshInstance" type="MeshInstance" parent="."]
+transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0.125, 0 )
+mesh = SubResource( 321 )
