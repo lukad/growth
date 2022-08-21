@@ -18,7 +18,6 @@ var snacks := [
 
 func _ready() -> void:
 	timer.wait_time = spawn_rate + rand_range(0.0, variance)
-	timer.start()
 	for node in get_children():
 		if node is CollisionShape:
 			_collision_shape = node
