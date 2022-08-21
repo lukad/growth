@@ -1,7 +1,16 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=20 format=2]
 
 [ext_resource path="res://Assets/Fonts/Kenney Future.ttf" type="DynamicFontData" id=1]
 [ext_resource path="res://Src/Menu/Menu.gd" type="Script" id=2]
+[ext_resource path="res://Assets/Sounds/Music/menu-music.ogg" type="AudioStream" id=3]
+[ext_resource path="res://Assets/Textures/kenneyjam.png" type="Texture" id=4]
+[ext_resource path="res://Assets/Textures/Input/d.png" type="Texture" id=5]
+[ext_resource path="res://Assets/Textures/Input/w.png" type="Texture" id=6]
+[ext_resource path="res://Assets/Textures/Input/s.png" type="Texture" id=7]
+[ext_resource path="res://Assets/Textures/Input/a.png" type="Texture" id=8]
+[ext_resource path="res://Assets/Textures/Input/mb1.png" type="Texture" id=9]
+[ext_resource path="res://Assets/Textures/Input/space.png" type="Texture" id=10]
+[ext_resource path="res://Assets/Textures/Input/shift.png" type="Texture" id=11]
 
 [sub_resource type="StyleBoxFlat" id=321]
 bg_color = Color( 1, 1, 1, 0.137255 )
@@ -28,44 +37,227 @@ outline_color = Color( 0, 0, 0, 1 )
 use_filter = true
 font_data = ExtResource( 1 )
 
+[sub_resource type="DynamicFont" id=326]
+use_filter = true
+font_data = ExtResource( 1 )
+
+[sub_resource type="StyleBoxFlat" id=327]
+content_margin_left = 8.0
+content_margin_right = 8.0
+content_margin_top = 4.0
+content_margin_bottom = 4.0
+bg_color = Color( 0, 0, 0, 0.356863 )
+
+[sub_resource type="Animation" id=324]
+resource_name = "Fadeout"
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:volume_db")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ 0.0, -80.0 ]
+}
+tracks/1/type = "method"
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 1 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "queue_free"
+} ]
+}
+
+[sub_resource type="Animation" id=325]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:volume_db")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 0.0 ]
+}
+
 [node name="Menu" type="CanvasLayer"]
 script = ExtResource( 2 )
+
+[node name="TextureRect" type="TextureRect" parent="."]
+anchor_left = 1.0
+anchor_right = 1.0
+margin_left = -289.0
+margin_top = 15.0
+margin_right = 34.0
+margin_bottom = 143.0
+texture = ExtResource( 4 )
+expand = true
+stretch_mode = 5
 
 [node name="CenterContainer" type="CenterContainer" parent="."]
 anchor_right = 1.0
 anchor_bottom = 1.0
 
 [node name="PanelContainer" type="PanelContainer" parent="CenterContainer"]
-margin_left = 333.0
-margin_top = 214.0
-margin_right = 691.0
-margin_bottom = 386.0
+margin_left = 193.0
+margin_top = 170.0
+margin_right = 830.0
+margin_bottom = 429.0
 custom_styles/panel = SubResource( 321 )
 
 [node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer/PanelContainer"]
-margin_right = 358.0
-margin_bottom = 172.0
+margin_right = 637.0
+margin_bottom = 259.0
 
-[node name="Label" type="Label" parent="CenterContainer/PanelContainer/VBoxContainer"]
-margin_right = 358.0
+[node name="Title" type="Label" parent="CenterContainer/PanelContainer/VBoxContainer"]
+margin_right = 637.0
 margin_bottom = 80.0
 custom_fonts/font = SubResource( 323 )
 custom_styles/normal = SubResource( 322 )
-text = "Growth"
+text = "Snack Attack"
 
 [node name="Start" type="Button" parent="CenterContainer/PanelContainer/VBoxContainer"]
 margin_top = 84.0
-margin_right = 358.0
+margin_right = 637.0
 margin_bottom = 126.0
 custom_fonts/font = SubResource( 320 )
 text = "Start"
 
 [node name="Quit" type="Button" parent="CenterContainer/PanelContainer/VBoxContainer"]
 margin_top = 130.0
-margin_right = 358.0
+margin_right = 637.0
 margin_bottom = 172.0
 custom_fonts/font = SubResource( 320 )
 text = "Quit"
+
+[node name="Help" type="Label" parent="CenterContainer/PanelContainer/VBoxContainer"]
+margin_top = 176.0
+margin_right = 637.0
+margin_bottom = 223.0
+custom_fonts/font = SubResource( 326 )
+custom_styles/normal = SubResource( 322 )
+text = "Defend the city from snacks! Kill as many snacks as
+possible before they eat the whole city."
+
+[node name="VBoxContainer" type="HBoxContainer" parent="CenterContainer/PanelContainer/VBoxContainer"]
+margin_top = 227.0
+margin_right = 637.0
+margin_bottom = 259.0
+
+[node name="Help2" type="Label" parent="CenterContainer/PanelContainer/VBoxContainer/VBoxContainer"]
+margin_top = 3.0
+margin_right = 72.0
+margin_bottom = 29.0
+custom_fonts/font = SubResource( 326 )
+custom_styles/normal = SubResource( 327 )
+text = "move"
+
+[node name="TextureRect" type="TextureRect" parent="CenterContainer/PanelContainer/VBoxContainer/VBoxContainer"]
+margin_left = 76.0
+margin_right = 108.0
+margin_bottom = 32.0
+rect_min_size = Vector2( 32, 32 )
+texture = ExtResource( 6 )
+stretch_mode = 5
+
+[node name="TextureRect2" type="TextureRect" parent="CenterContainer/PanelContainer/VBoxContainer/VBoxContainer"]
+margin_left = 112.0
+margin_right = 144.0
+margin_bottom = 32.0
+rect_min_size = Vector2( 32, 32 )
+texture = ExtResource( 8 )
+expand = true
+stretch_mode = 5
+
+[node name="TextureRect3" type="TextureRect" parent="CenterContainer/PanelContainer/VBoxContainer/VBoxContainer"]
+margin_left = 148.0
+margin_right = 180.0
+margin_bottom = 32.0
+rect_min_size = Vector2( 32, 32 )
+texture = ExtResource( 7 )
+expand = true
+stretch_mode = 5
+
+[node name="TextureRect4" type="TextureRect" parent="CenterContainer/PanelContainer/VBoxContainer/VBoxContainer"]
+margin_left = 184.0
+margin_right = 216.0
+margin_bottom = 32.0
+rect_min_size = Vector2( 32, 32 )
+texture = ExtResource( 5 )
+expand = true
+stretch_mode = 5
+
+[node name="Help3" type="Label" parent="CenterContainer/PanelContainer/VBoxContainer/VBoxContainer"]
+margin_left = 220.0
+margin_top = 3.0
+margin_right = 301.0
+margin_bottom = 29.0
+custom_fonts/font = SubResource( 326 )
+custom_styles/normal = SubResource( 327 )
+text = "Shoot"
+
+[node name="TextureRect5" type="TextureRect" parent="CenterContainer/PanelContainer/VBoxContainer/VBoxContainer"]
+margin_left = 305.0
+margin_right = 337.0
+margin_bottom = 32.0
+rect_min_size = Vector2( 32, 32 )
+texture = ExtResource( 9 )
+stretch_mode = 5
+
+[node name="Help4" type="Label" parent="CenterContainer/PanelContainer/VBoxContainer/VBoxContainer"]
+margin_left = 341.0
+margin_top = 3.0
+margin_right = 411.0
+margin_bottom = 29.0
+custom_fonts/font = SubResource( 326 )
+custom_styles/normal = SubResource( 327 )
+text = "jump"
+
+[node name="TextureRect6" type="TextureRect" parent="CenterContainer/PanelContainer/VBoxContainer/VBoxContainer"]
+margin_left = 415.0
+margin_right = 479.0
+margin_bottom = 32.0
+rect_min_size = Vector2( 64, 32 )
+texture = ExtResource( 10 )
+stretch_mode = 5
+
+[node name="Help5" type="Label" parent="CenterContainer/PanelContainer/VBoxContainer/VBoxContainer"]
+margin_left = 483.0
+margin_top = 3.0
+margin_right = 569.0
+margin_bottom = 29.0
+custom_fonts/font = SubResource( 326 )
+custom_styles/normal = SubResource( 327 )
+text = "Sprint"
+
+[node name="TextureRect7" type="TextureRect" parent="CenterContainer/PanelContainer/VBoxContainer/VBoxContainer"]
+margin_left = 573.0
+margin_right = 637.0
+margin_bottom = 32.0
+rect_min_size = Vector2( 64, 32 )
+texture = ExtResource( 11 )
+stretch_mode = 5
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 3 )
+autoplay = true
+bus = "Music"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="AudioStreamPlayer"]
+anims/Fadeout = SubResource( 324 )
+anims/RESET = SubResource( 325 )
 
 [connection signal="pressed" from="CenterContainer/PanelContainer/VBoxContainer/Start" to="." method="_on_Start_pressed"]
 [connection signal="pressed" from="CenterContainer/PanelContainer/VBoxContainer/Quit" to="." method="_on_Quit_pressed"]

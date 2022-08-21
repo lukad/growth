@@ -2,6 +2,7 @@ class_name Blaster
 extends Spatial
 
 var BulletScene := preload("res://Src/Bullet/Bullet.tscn")
+var head: Spatial
 
 onready var _anim_player: AnimationPlayer = $AnimationPlayer
 onready var _bullet_start: Spatial = $BulletStart
@@ -10,7 +11,7 @@ func fire() -> void:
 	var bullet: Bullet = BulletScene.instance()
 	get_tree().root.add_child(bullet)
 	bullet.global_translation = _bullet_start.global_translation
-	bullet.global_rotation = global_rotation
+	bullet.global_rotation = head.global_rotation
 
 func start_firing() -> void:
 	_anim_player.play("Fire")

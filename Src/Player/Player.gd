@@ -5,11 +5,12 @@ export var speed := 7.0
 export var acceleration := 9.0
 export var air_acceleration := 3.0
 export var gravity := 9.8
-export var jump := 2.0
+export var jump := 5.0
 export var mouse_sensitivity := 0.3
 export var max_speed := 1.75
 export var head_bob_frequency := 20.0
 export var head_bob_amplitude := 0.35
+export var sprint_multiplier := 1.75
 
 var _acceleration = acceleration
 var cam_accel = 50
@@ -30,6 +31,7 @@ func _ready():
 	#hides the cursor
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	footsteps_audio_player.load_samples_from_folder("res://Assets/Sounds/Footsteps")
+	blaster.head = head
 
 func _input(event: InputEvent):
 	if event is InputEventMouseMotion:
@@ -60,7 +62,10 @@ func _process(delta):
 func _physics_process(delta):
 	var direction := _get_desired_direction()
 	_velocity = _velocity.linear_interpolate(direction * speed, _acceleration * delta)
-	var horizontal_clamped := Vector3(_velocity.x, 0, _velocity.z).limit_length(max_speed)
+	var current_max_speed := max_speed
+	if Input.is_action_pressed("sprint"):
+		current_max_speed *= sprint_multiplier
+	var horizontal_clamped := Vector3(_velocity.x, 0, _velocity.z).limit_length(current_max_speed)
 	_velocity.x = horizontal_clamped.x
 	_velocity.z = horizontal_clamped.z
 

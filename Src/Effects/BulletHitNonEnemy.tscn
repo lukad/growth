@@ -1,0 +1,38 @@
+[gd_scene load_steps=6 format=2]
+
+[sub_resource type="StreamTexture" id=5]
+flags = 7
+load_path = "res://.import/scorch_03.png-6d83a2c9b3e74c06473ab6c9270b159f.s3tc.stex"
+
+[sub_resource type="SpatialMaterial" id=1]
+flags_transparent = true
+vertex_color_use_as_albedo = true
+albedo_texture = SubResource( 5 )
+
+[sub_resource type="QuadMesh" id=2]
+material = SubResource( 1 )
+
+[sub_resource type="Curve" id=3]
+_data = [ Vector2( 0, 1 ), 0.0, 0.0, 0, 0, Vector2( 0.668831, 1 ), 0.0, 0.0, 0, 0, Vector2( 1, 0.509091 ), -1.2, 0.0, 0, 0 ]
+
+[sub_resource type="Gradient" id=4]
+offsets = PoolRealArray( 0, 0.270175, 0.698246, 1 )
+colors = PoolColorArray( 1, 1, 1, 1, 1, 0.642944, 0.296875, 1, 0.96875, 0.283104, 0.124878, 1, 0, 0, 0, 0 )
+
+[node name="CPUParticles" type="CPUParticles"]
+emitting = false
+amount = 16
+lifetime = 0.25
+one_shot = true
+explosiveness = 1.0
+draw_order = 2
+mesh = SubResource( 2 )
+direction = Vector3( 0, 0, 1 )
+gravity = Vector3( 0, 0, 0 )
+initial_velocity = 10.0
+initial_velocity_random = 0.8
+damping = 79.63
+angle = 360.0
+angle_random = 1.0
+scale_amount_curve = SubResource( 3 )
+color_ramp = SubResource( 4 )

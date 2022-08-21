@@ -1,7 +1,6 @@
 tool
 extends EditorScenePostImport
 
-
 func post_import(scene: Object) -> Object:
 	var node := scene as Node
 	var tmp := node.get_child(0)
@@ -14,6 +13,7 @@ func post_import(scene: Object) -> Object:
 	mesh_instance.name = node.name
 	mesh_instance.use_in_baked_light = true
 	(mesh_instance.mesh as ArrayMesh).lightmap_unwrap(Transform.IDENTITY, 0.05)
+	mesh_instance.set_script(preload("res://Src/Building/Building.gd"))
 
 	mesh_instance.add_child(body)
 	body.owner = mesh_instance

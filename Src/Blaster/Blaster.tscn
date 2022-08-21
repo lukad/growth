@@ -71,6 +71,7 @@ script = ExtResource( 2 )
 
 [node name="blasterR" parent="." index="0"]
 transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0 )
+cast_shadow = 0
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." index="1"]
 stream = ExtResource( 3 )
