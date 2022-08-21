@@ -14,6 +14,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://Src/Blaster/Blaster.gd"
 }, {
+"base": "Area",
+"class": "Bullet",
+"language": "GDScript",
+"path": "res://Src/Bullet/Bullet.gd"
+}, {
 "base": "CanvasLayer",
 "class": "Menu",
 "language": "GDScript",
@@ -31,6 +36,7 @@ _global_script_classes=[ {
 } ]
 _global_script_class_icons={
 "Blaster": "",
+"Bullet": "",
 "Menu": "",
 "Player": "",
 "PlayerSpawn": ""
@@ -42,6 +48,11 @@ config/name="Growth"
 run/main_scene="res://Src/World/World.tscn"
 config/icon="res://icon.png"
 
+[audio]
+
+output_latency=10
+output_latency.web=10
+
 [editor_plugins]
 
 enabled=PoolStringArray(  )
@@ -49,6 +60,13 @@ enabled=PoolStringArray(  )
 [gui]
 
 common/drop_mouse_on_gui_input_disabled=true
+
+[importer_defaults]
+
+ogg_vorbis={
+"loop": false,
+"loop_offset": 0
+}
 
 [input]
 

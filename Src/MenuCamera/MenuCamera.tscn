@@ -1,4 +1,6 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://Src/MenuCamera/MenuCamera.vs" type="Script" id=1]
 
 [sub_resource type="Gradient" id=284]
 offsets = PoolRealArray( 0, 0.139423, 0.798077, 1 )
@@ -25,6 +27,7 @@ adjustment_color_correction = SubResource( 285 )
 
 [node name="MenuCamera" type="Position3D"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1.36337, 2.833, -1.33667 )
+script = ExtResource( 1 )
 
 [node name="Camera" type="Camera" parent="."]
 transform = Transform( 0.573576, 0.241287, -0.78281, 0, 0.955634, 0.294557, 0.819152, -0.168951, 0.548129, -4.35637, 0, 2.33267 )

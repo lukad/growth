@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/footstep_concrete_001.ogg-46eda05599311247ce4e1d34ef82c9c2.oggstr"
+
+[deps]
+
+source_file="res://Assets/Sounds/Footsteps/footstep_concrete_001.ogg"
+dest_files=[ "res://.import/footstep_concrete_001.ogg-46eda05599311247ce4e1d34ef82c9c2.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

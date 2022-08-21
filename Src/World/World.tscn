@@ -1052,6 +1052,7 @@ skeleton = NodePath("../skyscraperD")
 transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0.891402, 0.5, -2.3971 )
 
 [node name="MenuCamera" parent="." instance=ExtResource( 20 )]
+speed = 10.0
 
 [node name="large_buildingF" parent="." instance=ExtResource( 16 )]
 transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 4.9729, 0.5, -2.77765 )

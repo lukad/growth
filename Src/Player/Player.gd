@@ -17,16 +17,19 @@ var _snap
 
 var _velocity := Vector3.ZERO
 var _gravity := Vector3.ZERO
+var _last_sin_head_bob := 0.0
 
 onready var head: Spatial = $Head
 onready var head_translation := head.translation
 onready var camera: Camera = $Head/Camera
 onready var head_anim: AnimationPlayer = $Head/AnimationPlayer
 onready var blaster: Blaster = $Head/Camera/Blaster
+onready var footsteps_audio_player = $FootstepsAudioStreamPlayer
 
 func _ready():
 	#hides the cursor
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+	footsteps_audio_player.load_samples_from_folder("res://Assets/Sounds/Footsteps")
 
 func _input(event: InputEvent):
 	if event is InputEventMouseMotion:
@@ -70,8 +73,12 @@ func _physics_process(delta):
 	if is_on_floor():
 		_acceleration = acceleration
 		var head_bob := direction.length() * OS.get_ticks_msec() / 1000.0 * head_bob_frequency
-		var target_head_translation := head_translation + Vector3.UP * sin(head_bob) * head_bob_amplitude
+		var sin_head_bob := sin(head_bob)
+		if sin_head_bob <= 0 and _last_sin_head_bob > 0:
+			footsteps_audio_player.play()
+		var target_head_translation := head_translation + Vector3.UP * sin_head_bob * head_bob_amplitude
 		head.translation = head.translation.linear_interpolate(target_head_translation, delta)
+		_last_sin_head_bob = sin_head_bob
 	else:
 		_acceleration = air_acceleration
 
@@ -82,7 +89,7 @@ func _get_desired_direction() -> Vector3:
 	return global_transform.basis.xform(input)
 
 func _start_firing() -> void:
-	pass
+	blaster.start_firing()
 
 func _stop_firing() -> void:
-	pass
+	blaster.stop_firing()

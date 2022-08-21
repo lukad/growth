@@ -1,7 +1,9 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://Src/Player/Player.gd" type="Script" id=1]
 [ext_resource path="res://Src/Blaster/Blaster.tscn" type="PackedScene" id=2]
+[ext_resource path="res://addons/randomAudioStreamPlayer/random_audio_stream_player.gd" type="Script" id=3]
+[ext_resource path="res://Assets/Sounds/Laser/laserSmall_000.ogg" type="AudioStream" id=4]
 
 [sub_resource type="CapsuleShape" id=320]
 radius = 0.07
@@ -69,7 +71,7 @@ current = true
 near = 0.01
 
 [node name="Blaster" parent="Head/Camera" instance=ExtResource( 2 )]
-transform = Transform( -0.2, 0, -3.01992e-08, 0, 0.2, 0, 3.01992e-08, 0, -0.2, 0.034, -0.044, -0.103 )
+transform = Transform( 0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 0.034, -0.044, -0.103 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Head"]
 root_node = NodePath("../Camera")
@@ -79,3 +81,14 @@ anims/RESET = SubResource( 323 )
 [node name="MeshInstance" type="MeshInstance" parent="."]
 transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0.125, 0 )
 mesh = SubResource( 321 )
+
+[node name="FootstepsAudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+volume_db = -4.0
+pitch_scale = 0.8
+mix_target = 2
+bus = "Game"
+script = ExtResource( 3 )
+samples = [ ExtResource( 4 ) ]
+random_strategy = 1
+random_volume_range = 0.1
+random_pitch_range = 0.1
