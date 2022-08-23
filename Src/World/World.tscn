@@ -1,4 +1,4 @@
-[gd_scene load_steps=63 format=2]
+[gd_scene load_steps=67 format=2]
 
 [ext_resource path="res://Assets/Meshlibs/Ground.tres" type="MeshLibrary" id=1]
 [ext_resource path="res://Assets/Meshlibs/Roads.tres" type="MeshLibrary" id=2]
@@ -40,16 +40,47 @@ gradient = SubResource( 284 )
 
 [sub_resource type="ProceduralSky" id=1]
 
-[sub_resource type="Environment" id=312]
+[sub_resource type="Environment" id=333]
 background_mode = 2
 background_sky = SubResource( 1 )
 background_sky_orientation = Basis( 0.819152, 0, 0.573577, 0, 1, 0, -0.573577, 0, 0.819152 )
+tonemap_mode = 4
+auto_exposure_enabled = true
+ssao_enabled = true
+ssao_quality = 2
+dof_blur_far_enabled = true
+dof_blur_near_enabled = true
 glow_enabled = true
 glow_intensity = 1.1
 glow_strength = 1.2
 glow_hdr_threshold = 0.75
 adjustment_enabled = true
+adjustment_brightness = 0.93
+adjustment_saturation = 0.3
 adjustment_color_correction = SubResource( 285 )
+
+[sub_resource type="Gradient" id=334]
+offsets = PoolRealArray( 0, 0.139423, 0.798077, 1 )
+colors = PoolColorArray( 0, 0, 0, 1, 0.1169, 0.1148, 0.14, 1, 0.8, 0.7496, 0.632, 1, 1, 1, 1, 1 )
+
+[sub_resource type="GradientTexture" id=335]
+gradient = SubResource( 334 )
+
+[sub_resource type="ProceduralSky" id=336]
+
+[sub_resource type="Environment" id=312]
+background_mode = 2
+background_sky = SubResource( 336 )
+background_sky_orientation = Basis( 0.819152, 0, 0.573577, 0, 1, 0, -0.573577, 0, 0.819152 )
+tonemap_mode = 4
+auto_exposure_enabled = true
+ssao_quality = 2
+glow_enabled = true
+glow_intensity = 1.1
+glow_strength = 1.2
+glow_hdr_threshold = 0.75
+adjustment_enabled = true
+adjustment_color_correction = SubResource( 335 )
 
 [sub_resource type="SpatialMaterial" id=286]
 albedo_texture = ExtResource( 3 )
@@ -456,6 +487,7 @@ speed = 10.0
 
 [node name="Camera" parent="MenuCamera" index="0"]
 transform = Transform( 0.573576, 0.311295, -0.757698, 0, 0.924978, 0.380021, 0.819152, -0.217971, 0.530546, -4.35637, 0, 2.33267 )
+environment = SubResource( 333 )
 
 [node name="PlayerSpawn" parent="." instance=ExtResource( 17 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1.20041, 7.11245, -3.19209 )
