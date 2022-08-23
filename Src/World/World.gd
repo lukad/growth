@@ -44,6 +44,6 @@ func _on_buildings_left_changed(buildings_left: int) -> void:
 	if buildings_left <= 0:
 		player.queue_free()
 
-		for spawner in get_tree().get_nodes_in_group("EnemySpaners"):
+		for spawner in get_tree().get_nodes_in_group("EnemySpawners"):
 			var enemy_spawner := spawner as EnemySpawner
 			enemy_spawner.stop()
